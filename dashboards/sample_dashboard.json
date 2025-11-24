@@ -1,0 +1,39 @@
+{
+  "title": "Simple Splunk Portfolio Dashboard",
+  "description": "Beginner-friendly dashboard showcasing basic SPL skills.",
+  "visualizations": [
+    {
+      "id": "panel_top_ips",
+      "title": "Top Client IPs (access.log)",
+      "type": "statistics",
+      "search": {
+        "query": "source=\"access.log\" | top clientip",
+        "earliest_time": "-24h",
+        "latest_time": "now"
+      },
+      "options": {}
+    },
+    {
+      "id": "panel_add_to_cart",
+      "title": "Add-to-Cart Activity",
+      "type": "table",
+      "search": {
+        "query": "source=\"access.log\" \"action=addtocart\" | table req_time, clientip, productId",
+        "earliest_time": "-24h",
+        "latest_time": "now"
+      },
+      "options": {}
+    },
+    {
+      "id": "panel_geo",
+      "title": "SSH Source Countries (secure.log)",
+      "type": "statistics",
+      "search": {
+        "query": "source=\"secure.log\" | iplocation src | stats count by Country",
+        "earliest_time": "-24h",
+        "latest_time": "now"
+      },
+      "options": {}
+    }
+  ]
+}
